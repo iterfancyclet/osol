@@ -1,0 +1,145 @@
+:root {
+  --paper: #f4f6f8;
+  --surface: #ffffff;
+  --ink: #16202e;
+  --muted: #566274;
+  --line: #d3dae3;
+  --accent: #0b5f6b;
+  --accent-soft: #dcecee;
+  --warn: #8a5a00;
+  --warn-soft: #fbf0d9;
+  --font: Tahoma, "Segoe UI", "Noto Naskh Arabic", "Noto Sans Arabic", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #10161f;
+    --surface: #18212d;
+    --ink: #e8edf3;
+    --muted: #9aa6b6;
+    --line: #2b3646;
+    --accent: #5fc0cc;
+    --accent-soft: #17323a;
+    --warn: #e6b455;
+    --warn-soft: #3a2d12;
+  }
+}
+* { box-sizing: border-box; }
+html { background: var(--paper); }
+body {
+  margin: 0; color: var(--ink); background: var(--paper);
+  font: 16px/1.9 var(--font); -webkit-text-size-adjust: 100%;
+}
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+
+header.top { padding: 40px 0 20px; border-bottom: 2px solid var(--ink); }
+header.top h1 { margin: 0; font-size: 2rem; line-height: 1.4; letter-spacing: 0; }
+header.top p { margin: 4px 0 0; color: var(--muted); max-width: 60ch; }
+.topnav { display: flex; gap: 16px; margin-top: 12px; font-size: .9rem; }
+.stamp { color: var(--muted); font-size: .85rem; margin-top: 10px; }
+
+.banner {
+  background: var(--warn-soft); color: var(--warn); border-inline-start: 4px solid var(--warn);
+  padding: 10px 14px; margin: 16px 0 0; font-size: .92rem;
+}
+
+.controls { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 8px; align-items: center; }
+.controls input, .controls select {
+  font: inherit; padding: 8px 12px; background: var(--surface); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 6px; min-height: 44px;
+}
+.controls input { flex: 1 1 200px; }
+.sorting { color: var(--muted); font-size: .88rem; margin: 0 0 8px; }
+
+/* ردیف رتبه‌بندی */
+ol.board { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.row a {
+  display: grid; grid-template-columns: 2.6rem 1fr minmax(180px, 280px);
+  gap: 8px 16px; align-items: center; padding: 16px 4px;
+  border-bottom: 1px solid var(--line); text-decoration: none; color: inherit;
+}
+.row a:hover { background: var(--surface); }
+.rank { font-size: 1.6rem; font-weight: 700; color: var(--muted); text-align: center; }
+.row:nth-child(-n+3) .rank { color: var(--accent); }
+.who strong { display: block; font-size: 1.1rem; line-height: 1.5; }
+.who small { color: var(--muted); }
+.mini { grid-column: 2 / 4; display: flex; flex-wrap: wrap; gap: 4px 18px; color: var(--muted); font-size: .85rem; }
+.mini b { color: var(--ink); font-weight: 700; }
+@media (max-width: 560px) {
+  .row a { grid-template-columns: 2.2rem 1fr; }
+  .meter { grid-column: 1 / 3; }
+  .mini { grid-column: 1 / 3; }
+}
+
+/* خط‌کش نمره: عنصر شاخص سایت */
+.meter { display: flex; align-items: center; gap: 12px; }
+.num { font-size: 1.5rem; font-weight: 700; min-width: 2.6rem; text-align: center; font-variant-numeric: tabular-nums; }
+.ruler {
+  position: relative; flex: 1; height: 22px; direction: ltr;
+  background:
+    repeating-linear-gradient(to right, var(--ink) 0 1px, transparent 1px 10%) 0 100% / 100% 8px no-repeat,
+    linear-gradient(var(--line), var(--line)) 0 100% / 100% 1px no-repeat;
+}
+.ruler::after { /* تیک انتهایی */
+  content: ""; position: absolute; right: 0; bottom: 0; width: 1px; height: 8px; background: var(--ink);
+}
+.ruler .fill { position: absolute; left: 0; bottom: 0; height: 4px; background: var(--accent-soft); }
+.ruler .mark {
+  position: absolute; bottom: 0; width: 4px; height: 22px; margin-left: -2px;
+  background: var(--accent); border-radius: 1px;
+}
+.ruler.big { height: 30px; }
+.ruler.big .mark { height: 30px; width: 5px; }
+.scale-ends { display: flex; justify-content: space-between; direction: ltr; color: var(--muted); font-size: .72rem; margin-top: 2px; }
+
+h2.sec { font-size: 1.15rem; margin: 40px 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+.insufficient .row a { opacity: .85; }
+.insufficient .rank { font-size: 1rem; }
+.hint { color: var(--muted); font-size: .88rem; }
+
+/* صفحه‌ی شخص */
+.back { display: inline-block; margin: 20px 0 0; font-size: .9rem; }
+.person-head h1 { margin: 8px 0 0; font-size: 1.8rem; line-height: 1.5; }
+.person-head p { margin: 0; color: var(--muted); }
+.overall { margin: 24px 0; }
+.overall .num { font-size: 2.6rem; }
+.crit-block { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.crit-block h3 { margin: 0 0 4px; font-size: 1rem; }
+.crit-block .meta { color: var(--muted); font-size: .84rem; }
+
+.trend { display: flex; align-items: flex-end; gap: 6px; height: 110px; padding-top: 8px; border-bottom: 1px solid var(--ink); }
+.trend .bar { flex: 0 1 44px; min-width: 22px; background: var(--accent-soft); border-top: 3px solid var(--accent); position: relative; }
+.trend-labels { display: flex; gap: 6px; }
+.trend-labels span { flex: 0 1 44px; min-width: 22px; text-align: center; font-size: .72rem; color: var(--muted); }
+
+.evidence { list-style: none; margin: 0; padding: 0; }
+.ev { padding: 18px 0; border-bottom: 1px solid var(--line); }
+.ev-head { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: .85rem; color: var(--muted); }
+.ev h3 { margin: 4px 0; font-size: 1.02rem; line-height: 1.7; }
+.badge { display: inline-block; padding: 0 8px; border-radius: 4px; font-size: .78rem; background: var(--accent-soft); color: var(--accent); }
+.badge.auto { background: var(--warn-soft); color: var(--warn); }
+.ev-crit { margin: 10px 0 0; padding-inline-start: 12px; border-inline-start: 3px solid var(--line); }
+.ev-crit .ct { font-weight: 700; font-size: .92rem; }
+.ev-crit q { display: block; margin: 2px 0; quotes: "«" "»"; }
+.ev-crit .why { color: var(--muted); font-size: .9rem; }
+.unverified { color: var(--warn); font-size: .8rem; }
+.report { font-size: .82rem; }
+
+/* روش‌شناسی */
+.crit-def { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.crit-def h3 { margin: 0; font-size: 1.05rem; }
+.anchors { margin: 8px 0 0; padding: 0; list-style: none; font-size: .92rem; }
+.anchors li { display: grid; grid-template-columns: 4rem 1fr; gap: 8px; padding: 2px 0; }
+.anchors b { font-variant-numeric: tabular-nums; }
+ul.plain { padding-inline-start: 20px; }
+
+footer { margin: 56px 0 40px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
+.empty { padding: 32px 0; color: var(--muted); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .ruler .mark { animation: settle .5s ease-out both; }
+  @keyframes settle { from { opacity: 0; transform: translateX(-10px); } }
+}

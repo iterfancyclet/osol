@@ -1,0 +1,23 @@
+[
+  {
+    "id": "sample-1",
+    "name": "شخصیت نمونه یک",
+    "title": "سمت نمونه",
+    "twitter": "sample_account_1",
+    "aliases": ["آقای نمونه یک"]
+  },
+  {
+    "id": "sample-2",
+    "name": "شخصیت نمونه دو",
+    "title": "سمت نمونه",
+    "twitter": "sample_account_2",
+    "aliases": []
+  },
+  {
+    "id": "sample-3",
+    "name": "شخصیت نمونه سه",
+    "title": "سمت نمونه",
+    "twitter": "sample_account_3",
+    "aliases": []
+  }
+]

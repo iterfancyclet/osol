@@ -1,0 +1,1 @@
+window.REVIEW_DATA = {"generated_at": "2026-11-05T10:20:23Z", "people": {"sample-1": "شخصیت نمونه یک", "sample-2": "شخصیت نمونه دو", "sample-3": "شخصیت نمونه سه"}, "criteria": {"distrust_us": "بی‌اعتمادی به آمریکا", "negotiation_stance": "موضع درباره‌ی مذاکره با آمریکا", "action_consistency": "تطابق عملکرد با گفتار"}, "items": [], "overrides": {}};

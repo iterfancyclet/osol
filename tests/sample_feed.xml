@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>خبرگزاری آزمایشی</title>
+    <item>
+      <title>شخصیت نمونه یک: به آمریکا نمی‌توان اعتماد کرد</title>
+      <link>https://example.com/news/1</link>
+      <description>&lt;p&gt;شخصیت نمونه یک در سخنانی گفت: به تعهدات آمریکا نمی‌توان اعتماد کرد. او افزود با مذاکره مخالف است.&lt;/p&gt;</description>
+      <pubDate>PUBDATE_1</pubDate>
+    </item>
+    <item>
+      <title>شخصیت نمونه یک در جلسه رأی داد</title>
+      <link>https://example.com/news/2</link>
+      <description>شخصیت نمونه یک به طرح مخالف مذاکره با آمریکا رای داد. مذاکره‌ای در کار نیست.</description>
+      <pubDate>PUBDATE_2</pubDate>
+    </item>
+    <item>
+      <title>شخصیت نمونه یک: آماده مذاکره هستیم</title>
+      <link>https://example.com/news/3</link>
+      <description>شخصیت نمونه یک اعلام کرد آماده مذاکره با آمریکا است و می‌توان اعتماد کرد.</description>
+      <pubDate>PUBDATE_3</pubDate>
+    </item>
+    <item>
+      <title>شخصیت نمونه دو درباره‌ی تحریم‌ها</title>
+      <link>https://example.com/news/4</link>
+      <description>شخصیت نمونه دو گفت آمریکا عهدشکن است و مذاکره نمی‌کنیم.</description>
+      <pubDate>PUBDATE_1</pubDate>
+    </item>
+    <item>
+      <title>شخصیت نمونه دو: بی‌اعتمادی به واشنگتن</title>
+      <link>https://example.com/news/5</link>
+      <description>شخصیت نمونه دو اظهار کرد بی‌اعتمادی به آمریکا پشتوانه‌ی تاریخی دارد.</description>
+      <pubDate>PUBDATE_2</pubDate>
+    </item>
+    <item>
+      <title>شخصیت نمونه دو و مذاکره</title>
+      <link>https://example.com/news/6</link>
+      <description>شخصیت نمونه دو گفت مخالف مذاکره است و تحریم‌ها ادامه دارد.</description>
+      <pubDate>PUBDATE_3</pubDate>
+    </item>
+    <item>
+      <title>خبر نامرتبط با کلیدواژه</title>
+      <link>https://example.com/news/7</link>
+      <description>شخصیت نمونه سه در مراسم افتتاح حاضر شد.</description>
+      <pubDate>PUBDATE_1</pubDate>
+    </item>
+    <item>
+      <title>خبر قدیمی</title>
+      <link>https://example.com/news/8</link>
+      <description>شخصیت نمونه یک درباره‌ی مذاکره با آمریکا صحبت کرد.</description>
+      <pubDate>Mon, 01 Jan 2024 10:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

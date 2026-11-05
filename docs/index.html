@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>رتبه‌بندی</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="index">
+  <div class="wrap">
+    <header class="top">
+      <h1 data-site-title></h1>
+      <p data-site-subtitle></p>
+      <nav class="topnav" aria-label="صفحه‌ها">
+        <a href="index.html" aria-current="page">رتبه‌بندی</a>
+        <a href="about.html">روش‌شناسی و معیارها</a>
+      </nav>
+      <div class="stamp" data-stamp></div>
+    </header>
+    <div data-banners></div>
+    <main>
+      <div class="controls">
+        <input id="q" type="search" placeholder="جست‌وجوی نام یا سمت" aria-label="جست‌وجوی نام یا سمت">
+        <select id="sort" aria-label="مرتب‌سازی بر اساس"></select>
+      </div>
+      <p id="sorting" class="sorting"></p>
+      <ol id="board" class="board"></ol>
+      <div id="insufficient" class="insufficient"></div>
+    </main>
+    <footer>
+      <p data-disclaimer></p>
+      <p data-contact></p>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

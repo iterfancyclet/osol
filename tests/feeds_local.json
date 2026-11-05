@@ -1,0 +1,8 @@
+[
+  {
+    "id": "sample",
+    "name": "خبرگزاری آزمایشی",
+    "url": "file://tests/sample_feed.xml",
+    "enabled": true
+  }
+]

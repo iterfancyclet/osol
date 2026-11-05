@@ -1,0 +1,8 @@
+[
+  {
+    "id": "example",
+    "name": "نمونه (غیرفعال) - آدرس RSS واقعی خبرگزاری را اینجا بگذارید",
+    "url": "https://example.com/rss.xml",
+    "enabled": false
+  }
+]

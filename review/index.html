@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>بازبینی نمره‌ها (محلی)</title>
+  <link rel="stylesheet" href="../docs/style.css">
+  <style>
+    .card { background: var(--surface); border: 1px solid var(--line); padding: 14px; margin: 12px 0; }
+    .card h3 { margin: 4px 0; font-size: 1rem; }
+    .crit { margin: 10px 0 0; padding-inline-start: 12px; border-inline-start: 3px solid var(--line); }
+    .crit input[type=number] { width: 4.5rem; font: inherit; padding: 4px 6px; min-height: 36px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; align-items: center; }
+    button { font: inherit; padding: 8px 16px; min-height: 40px; border: 1px solid var(--ink); background: var(--surface); color: var(--ink); cursor: pointer; }
+    button.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+    button.primary { background: var(--ink); color: var(--paper); }
+    textarea { width: 100%; font: inherit; padding: 6px; min-height: 40px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+    .bar { position: sticky; top: 0; background: var(--paper); padding: 10px 0; border-bottom: 1px solid var(--line); z-index: 2; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <h1>بازبینی نمره‌ها</h1>
+      <p>این صفحه فقط روی رایانه‌ی شما کار می‌کند و چیزی را جایی ارسال نمی‌کند. بعد از بازبینی، فایل را دانلود کنید و جایگزین <code>config/overrides.json</code> کنید.</p>
+    </header>
+    <main>
+      <div class="bar">
+        <select id="filter" aria-label="فیلتر وضعیت">
+          <option value="pending">در انتظار بازبینی</option>
+          <option value="auto">خودکار (نمونه‌گیری)</option>
+          <option value="approved">تأییدشده</option>
+          <option value="rejected">ردشده</option>
+          <option value="all">همه</option>
+        </select>
+        <span id="count" class="hint"></span>
+        <button class="primary" id="dl">دانلود overrides.json</button>
+      </div>
+      <div id="list"></div>
+    </main>
+  </div>
+  <script src="queue.js"></script>
+  <script>
+    const D = window.REVIEW_DATA || { items: [], overrides: {}, people: {}, criteria: {} };
+    const ov = JSON.parse(JSON.stringify(D.overrides || {}));
+    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const safe = (u) => { try { const x = new URL(u); return /^https?:$/.test(x.protocol) ? x.href : ""; } catch { return ""; } };
+    const list = document.getElementById("list"), filter = document.getElementById("filter");
+
+    function render() {
+      const f = filter.value;
+      const items = D.items.filter((it) => {
+        const shown = ov[it.id]?.status || it.base_status;
+        return f === "all" || shown === f;
+      });
+      document.getElementById("count").textContent = items.length + " مورد";
+      list.innerHTML = items.map((it) => {
+        const o = ov[it.id] || {};
+        const crit = Object.entries(it.criteria).map(([cid, c]) => `
+          <div class="crit"><b>${esc(D.criteria[cid] || cid)}</b>
+            نمره: <input type="number" min="0" max="10" step="1" data-id="${esc(it.id)}" data-cid="${esc(cid)}" value="${esc(o.scores?.[cid] ?? c.score)}">
+            <q>${esc(c.quote)}</q>${c.quote_verified ? "" : ' <span class="unverified">نقل‌قول تأیید نشد</span>'}
+            <div class="hint">${esc(c.reason)}</div></div>`).join("");
+        const href = safe(it.url);
+        return `<div class="card"><div class="hint">${esc(D.people[it.person_id] || it.person_id)} · ${esc(it.source)} · اطمینان ${esc(it.confidence)} · وضعیت پایه: ${esc(it.base_status === "pending" ? "نیازمند بازبینی" : "خودکار")}</div>
+          <h3>${href ? `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">${esc(it.title)}</a>` : esc(it.title)}</h3>
+          <div>${esc(it.summary)}</div>${crit}
+          <textarea data-note="${esc(it.id)}" placeholder="یادداشت (اختیاری)">${esc(o.note || "")}</textarea>
+          <div class="actions">
+            <button class="${o.status === "approved" ? "on" : ""}" data-act="approved" data-id="${esc(it.id)}">تأیید</button>
+            <button class="${o.status === "rejected" ? "on" : ""}" data-act="rejected" data-id="${esc(it.id)}">رد و حذف از سایت</button>
+            <button data-act="clear" data-id="${esc(it.id)}">پاک‌کردن تصمیم</button>
+          </div></div>`;
+      }).join("") || '<p class="empty">موردی نیست.</p>';
+    }
+
+    list.addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-act]"); if (!b) return;
+      const id = b.dataset.id;
+      if (b.dataset.act === "clear") delete ov[id];
+      else ov[id] = { ...(ov[id] || {}), status: b.dataset.act };
+      render();
+    });
+    list.addEventListener("change", (e) => {
+      const t = e.target;
+      if (t.dataset.cid) {
+        const v = Math.max(0, Math.min(10, Math.round(Number(t.value))));
+        ov[t.dataset.id] = { ...(ov[t.dataset.id] || {}), scores: { ...(ov[t.dataset.id]?.scores || {}), [t.dataset.cid]: v } };
+        t.value = v;
+      } else if (t.dataset.note) {
+        ov[t.dataset.note] = { ...(ov[t.dataset.note] || {}), note: t.value };
+      }
+    });
+    filter.addEventListener("change", render);
+    document.getElementById("dl").addEventListener("click", () => {
+      const clean = {};
+      for (const [k, v] of Object.entries(ov)) if (v.status || v.scores || v.note) clean[k] = v;
+      const blob = new Blob([JSON.stringify(clean, null, 1)], { type: "application/json" });
+      const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "overrides.json"; a.click();
+    });
+    render();
+  </script>
+</body>
+</html>

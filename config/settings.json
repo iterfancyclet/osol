@@ -1,0 +1,28 @@
+{
+  "site": {
+    "title": "سنجش‌نما",
+    "subtitle": "ارزیابی شفاف مواضع و عملکرد بر پایه‌ی معیارهای منتشرشده",
+    "contact_email": "contact@example.com",
+    "disclaimer": "نمره‌ها بر پایه‌ی معیارهای منتشرشده در صفحه‌ی روش‌شناسی و با کمک تحلیل خودکار متن ثبت می‌شوند و ممکن است خطا داشته باشند. برای هر نمره نقل‌قول و منبع آمده است. اگر خطایی دیدید، از طریق راه ارتباطی پایین صفحه گزارش دهید."
+  },
+  "fetch": {
+    "max_age_days": 14,
+    "keep_days": 400,
+    "topic_keywords": ["آمریکا", "امریکا", "ایالات متحده", "مذاکره", "مذاکرات", "برجام", "تحریم", "رهبر انقلاب", "رهبری", "واشنگتن", "ترامپ", "بایدن"]
+  },
+  "analyze": {
+    "max_per_run": 40,
+    "max_chars": 3500,
+    "min_confidence": 0.6,
+    "providers": [
+      { "name": "gemini", "model": "gemini-2.5-flash-lite", "min_interval": 7 },
+      { "name": "groq", "model": "openai/gpt-oss-120b", "min_interval": 15 }
+    ]
+  },
+  "scoring": {
+    "half_life_days": 90,
+    "min_items": 3,
+    "count_low_confidence": false,
+    "max_items_shown": 60
+  }
+}
