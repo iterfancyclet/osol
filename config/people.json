@@ -1,23 +1,23 @@
 [
   {
-    "id": "sample-1",
+    "id": "pezeshkian",
     "name": "مسعود پزشکیان",
-    "title": "رئیس جمهور",
-    "twitter": "sample_account_1",
-    "aliases": ["آقای نمونه یک"]
+    "title": "رئیس‌جمهور",
+    "twitter": "",
+    "aliases": ["پزشکیان", "دکتر پزشکیان"]
   },
   {
-    "id": "sample-2",
+    "id": "araghchi",
     "name": "عباس عراقچی",
     "title": "وزیر خارجه",
-    "twitter": "sample_account_2",
-    "aliases": []
+    "twitter": "",
+    "aliases": ["عراقچی"]
   },
   {
-    "id": "sample-3",
-    "name": "محمد باقر قالیباف",
+    "id": "ghalibaf",
+    "name": "محمدباقر قالیباف",
     "title": "رئیس مجلس",
-    "twitter": "sample_account_3",
-    "aliases": []
+    "twitter": "",
+    "aliases": ["محمد باقر قالیباف", "قالیباف"]
   }
 ]
