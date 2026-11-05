@@ -1,22 +1,22 @@
 [
   {
     "id": "sample-1",
-    "name": "شخصیت نمونه یک",
-    "title": "سمت نمونه",
+    "name": "مسعود پزشکیان",
+    "title": "رئیس جمهور",
     "twitter": "sample_account_1",
     "aliases": ["آقای نمونه یک"]
   },
   {
     "id": "sample-2",
-    "name": "شخصیت نمونه دو",
-    "title": "سمت نمونه",
+    "name": "عباس عراقچی",
+    "title": "وزیر خارجه",
     "twitter": "sample_account_2",
     "aliases": []
   },
   {
     "id": "sample-3",
-    "name": "شخصیت نمونه سه",
-    "title": "سمت نمونه",
+    "name": "محمد باقر قالیباف",
+    "title": "رئیس مجلس",
     "twitter": "sample_account_3",
     "aliases": []
   }
